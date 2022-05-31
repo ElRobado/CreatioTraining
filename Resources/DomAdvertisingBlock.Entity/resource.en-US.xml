@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="en-US">
+	<Group Type="String">
+		<Items>
+			<Item Name="Caption" Value="Рекламный блок" />
+			<Item Name="Columns.DomCode.Caption" Value="Код" />
+			<Item Name="Columns.DomCommentary.Caption" Value="Комментарий" />
+			<Item Name="Columns.DomIsActive.Caption" Value="Активен" />
+			<Item Name="Columns.DomName.Caption" Value="Название" />
+			<Item Name="Columns.DomNotes.Caption" Value="Заметки" />
+			<Item Name="Columns.DomPeriodicity.Caption" Value="Периодичность" />
+			<Item Name="Columns.DomResponsible.Caption" Value="Ответственный" />
+		</Items>
+	</Group>
+</Resources>

@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "7a5930d8-6a97-40c4-aaf4-cf78d93781aa",
+    "Name": "DomAdvertisingBlockInFolder",
+    "ModifiedOnUtc": "\/Date(1653991061000)\/",
+    "Parent": {
+      "UId": "4f63bafb-e9e7-4082-b92e-66b97c14017c",
+      "Name": "BaseItemInFolder"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Рекламны в группе",
+    "DependsOn": []
+  }
+}

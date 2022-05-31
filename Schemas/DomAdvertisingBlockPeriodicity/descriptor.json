@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "f14d35c6-04bd-570a-aebc-5f30314dde70",
+    "Name": "DomAdvertisingBlockPeriodicity",
+    "ModifiedOnUtc": "\/Date(1653991697000)\/",
+    "Parent": {
+      "UId": "11ab4bcb-9b23-4b6d-9c86-520fae925d75",
+      "Name": "BaseLookup"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Периодичность рекламного блока",
+    "DependsOn": []
+  }
+}
