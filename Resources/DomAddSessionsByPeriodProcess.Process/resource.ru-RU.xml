@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="ru-RU">
+	<Group Type="String">
+		<Items>
+			<Item Name="BaseElements.DomAddFirstSession.Caption" Value="Добавление 1ого выпуска" />
+			<Item Name="BaseElements.DomAddFirstSession.Parameters.DataSourceFilters.Caption" Value="Фильтры источника данных" />
+			<Item Name="BaseElements.DomAddFirstSession.Parameters.EntitySchemaId.Caption" Value="Объект" />
+			<Item Name="BaseElements.DomAddFirstSession.Parameters.EntitySchemaId.DisplayValue" Value="f51cff5b-7263-1eb5-7d9a-eab86775be29" />
+			<Item Name="BaseElements.DomAddFirstSession.Parameters.FilterEntitySchemaId.Caption" Value="Объект выборки" />
+			<Item Name="BaseElements.DomAddFirstSession.Parameters.RecordAddMode.Caption" Value="Режим добавления записей" />
+			<Item Name="BaseElements.DomAddFirstSession.Parameters.RecordAddMode.DisplayValue" Value="0" />
+			<Item Name="BaseElements.DomAddFirstSession.Parameters.RecordDefValues.Caption" Value="Значения полей" />
+			<Item Name="BaseElements.DomAddFirstSession.Parameters.RecordDefValues.DisplayValue" Value="{&quot;$type&quot;:&quot;Terrasoft.Core.Process.LocalizableParameterValuesList, Terrasoft.Core&quot;,&quot;$values&quot;:[{&quot;ItemUId&quot;:&quot;bfe370b4-784b-490c-9f97-705495c607a3&quot;,&quot;columnMetaPath&quot;:{&quot;value&quot;:&quot;7515b10c-dbb0-498b-637d-0bcea77f0eef&quot;},&quot;schemaUId&quot;:{&quot;value&quot;:&quot;f51cff5b-7263-1eb5-7d9a-eab86775be29&quot;},&quot;value&quot;:{&quot;value&quot;:&quot;[#SysVariable.CurrentUserContact#]&quot;},&quot;displayValue&quot;:{&quot;value&quot;:&quot;[#Системная переменная.Контакт текущего пользователя#]&quot;},&quot;parameterValue&quot;:{&quot;value&quot;:&quot;{\&quot;$type\&quot;:\&quot;Terrasoft.Core.Process.ProcessSchemaParameterValue, Terrasoft.Core\&quot;,\&quot;Source\&quot;:3,\&quot;DisplayValue\&quot;:\&quot;\&quot;,\&quot;Value\&quot;:\&quot;\&quot;,\&quot;MetaPath\&quot;:null,\&quot;MetaDataValue\&quot;:null,\&quot;ModifiedInSchemaUId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;,\&quot;SchemaUId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;,\&quot;SchemaManagerName\&quot;:\&quot;\&quot;,\&quot;DataValueTypeUId\&quot;:\&quot;b295071f-7ea9-4e62-8d1a-919bf3732ff2\&quot;,\&quot;ReferenceSchemaUId\&quot;:\&quot;16be3651-8fe2-4159-8dd0-a803d4683dd3\&quot;,\&quot;ResourceItemName\&quot;:null}&quot;}},{&quot;ItemUId&quot;:&quot;e0cb72ad-8600-4180-bc4b-fcf34afd5bf4&quot;,&quot;columnMetaPath&quot;:{&quot;value&quot;:&quot;01f4556b-39d1-3b22-7679-f7399234f4f0&quot;},&quot;schemaUId&quot;:{&quot;value&quot;:&quot;f51cff5b-7263-1eb5-7d9a-eab86775be29&quot;},&quot;value&quot;:{&quot;value&quot;:&quot;[#SysVariable.CurrentDateTime#]&quot;},&quot;displayValue&quot;:{&quot;value&quot;:&quot;[#Системная переменная.Текущее значение даты и времени#]&quot;},&quot;parameterValue&quot;:{&quot;value&quot;:&quot;{\&quot;$type\&quot;:\&quot;Terrasoft.Core.Process.ProcessSchemaParameterValue, Terrasoft.Core\&quot;,\&quot;Source\&quot;:3,\&quot;DisplayValue\&quot;:\&quot;\&quot;,\&quot;Value\&quot;:\&quot;\&quot;,\&quot;MetaPath\&quot;:null,\&quot;MetaDataValue\&quot;:null,\&quot;ModifiedInSchemaUId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;,\&quot;SchemaUId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;,\&quot;SchemaManagerName\&quot;:\&quot;\&quot;,\&quot;DataValueTypeUId\&quot;:\&quot;d21e9ef4-c064-4012-b286-fa1a8171da44\&quot;,\&quot;ReferenceSchemaUId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;,\&quot;ResourceItemName\&quot;:null}&quot;}},{&quot;ItemUId&quot;:&quot;6bd0bd69-f909-4c5e-8772-e3a93cd3aa67&quot;,&quot;columnMetaPath&quot;:{&quot;value&quot;:&quot;a2b7590c-514b-495e-a515-5aba210dbd4d&quot;},&quot;schemaUId&quot;:{&quot;value&quot;:&quot;f51cff5b-7263-1eb5-7d9a-eab86775be29&quot;},&quot;value&quot;:{&quot;value&quot;:&quot;[#[IsOwnerSchema:false].[IsSchema:false].[Parameter:{19cce05e-d9e6-42cd-863b-0797317ee4d0}]#]&quot;},&quot;displayValue&quot;:{&quot;value&quot;:&quot;[#Id Рекламного Блока #]&quot;},&quot;parameterValue&quot;:{&quot;value&quot;:&quot;{\&quot;$type\&quot;:\&quot;Terrasoft.Core.Process.ProcessSchemaParameterValue, Terrasoft.Core\&quot;,\&quot;Source\&quot;:3,\&quot;DisplayValue\&quot;:\&quot;\&quot;,\&quot;Value\&quot;:\&quot;\&quot;,\&quot;MetaPath\&quot;:null,\&quot;MetaDataValue\&quot;:null,\&quot;ModifiedInSchemaUId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;,\&quot;SchemaUId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;,\&quot;SchemaManagerName\&quot;:\&quot;\&quot;,\&quot;DataValueTypeUId\&quot;:\&quot;b295071f-7ea9-4e62-8d1a-919bf3732ff2\&quot;,\&quot;ReferenceSchemaUId\&quot;:\&quot;b5e41cb2-958d-4d96-8d07-0719ebcf6204\&quot;,\&quot;ResourceItemName\&quot;:null}&quot;}}]}" />
+			<Item Name="BaseElements.DomAddFirstSession.Parameters.RecordId.Caption" Value="Id созданной записи" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Caption" Value="Чтение Периодичности из Рекламного блока" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.AggregationColumnName.Caption" Value="Имя колонки для агрегирующей функции" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.CanReadUncommitedData.Caption" Value="Выполнять &quot;грязное чтение&quot;" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.CanReadUncommitedData.DisplayValue" Value="true" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ConsiderTimeInFilter.Caption" Value="Учитывать время в фильтре" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ConsiderTimeInFilter.DisplayValue" Value="false" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.DataSourceFilters.Caption" Value="Источник данных фильтров" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.EntityColumnMetaPathes.Caption" Value="Перечень колонок для чтения" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.FunctionType.Caption" Value="Тип агрегирующей функции" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.IgnoreDisplayValues.Caption" Value="Не читать отображаемые значения колонок Справочников" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.NumberOfRecords.Caption" Value="Количество записей для чтения" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.OrderInfo.Caption" Value="Порядок сортировки колонок" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ReadSomeTopRecords.Caption" Value="Читать первые" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ResultCompositeObjectList.Caption" Value="Коллекция записей" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ResultCount.Caption" Value="Количество записей" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ResultDateTimeFunction.Caption" Value="Результат функции" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ResultEntity.Caption" Value="Первый элемент результирующей коллекции" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ResultEntityCollection.Caption" Value="Результирующая коллекция" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ResultFloatFunction.Caption" Value="Результат функции" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ResultIntegerFunction.Caption" Value="Результат функции" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ResultRowsCount.Caption" Value="Количество прочитанных записей" />
+			<Item Name="BaseElements.ReadingPeriodicityFromAdvertisingBlock.Parameters.ResultType.Caption" Value="Тип результата" />
+			<Item Name="Caption" Value="Создание Выпусков с заданной периодичностью " />
+			<Item Name="LaneSets.LaneSet1.Caption" Value="LaneSet 1" />
+			<Item Name="LaneSets.LaneSet1.Lanes.Lane1.Caption" Value="Lane 1" />
+			<Item Name="NotificationCaption.Caption" Value="Заголовок экземпляра процесса" />
+			<Item Name="NotificationCaption.DisplayValue" Value="[#Название процесса#]" />
+			<Item Name="Parameters.AdvertisingBlockId.Caption" Value="Id Рекламного Блока" />
+		</Items>
+	</Group>
+</Resources>

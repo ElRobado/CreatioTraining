@@ -3,6 +3,7 @@
 	<Group Type="String">
 		<Items>
 			<Item Name="Caption" Value="Страница редактирования: &quot;Рекламный блок&quot;" />
+			<Item Name="LocalizableStrings.DomAddSessionsByPeriodActionCaption.Value" Value="Создать выпуски по периоду" />
 			<Item Name="LocalizableStrings.DomSessionDetailDetailCaptionOnPage.Value" Value="Выпуски" />
 			<Item Name="LocalizableStrings.DomSessionTabLabelTabCaption.Value" Value="Выпуски" />
 		</Items>

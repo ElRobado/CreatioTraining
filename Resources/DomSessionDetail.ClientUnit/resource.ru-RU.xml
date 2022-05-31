@@ -4,6 +4,7 @@
 		<Items>
 			<Item Name="Caption" Value="Схема детали: &quot;Выпуски&quot;" />
 			<Item Name="LocalizableStrings.Caption.Value" Value="Выпуски" />
+			<Item Name="LocalizableStrings.DomAddSessionsByPeriodActionCaption.Value" Value="Создать выпуски по периоду" />
 		</Items>
 	</Group>
 </Resources>

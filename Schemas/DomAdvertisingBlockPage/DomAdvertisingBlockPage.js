@@ -1,4 +1,4 @@
-define("DomAdvertisingBlockPage", [], function() {
+define("DomAdvertisingBlockPage", ["ProcessModuleUtilities"], function (ProcessModuleUtilities) {
 	return {
 		entitySchemaName: "DomAdvertisingBlock",
 		attributes: {},
@@ -22,10 +22,10 @@ define("DomAdvertisingBlockPage", [], function() {
 			}
 		}/**SCHEMA_DETAILS*/,
 		businessRules: /**SCHEMA_BUSINESS_RULES*/{
-          	/*
-              Бизнес-правило для фильтрации поля Ответственный 
-              для отображения только Контактов с типом "Сотрудник".
-            */
+			/*
+			  Бизнес-правило для фильтрации поля Ответственный 
+			  для отображения только Контактов с типом "Сотрудник".
+			*/
 			"DomResponsible": {
 				"c7b72954-d6bb-498f-8527-80cded420f9f": {
 					"uId": "c7b72954-d6bb-498f-8527-80cded420f9f",
@@ -42,7 +42,80 @@ define("DomAdvertisingBlockPage", [], function() {
 				}
 			}
 		}/**SCHEMA_BUSINESS_RULES*/,
-		methods: {},
+		methods: {
+			/*
+				Функция, инициализирующая страницу
+			*/
+			init: function () {
+				this.callParent(arguments);
+				this.subscriptionFunction();
+			},
+			/*
+				Функция для подписки на сообщения
+			*/
+			subscriptionFunction: function () {
+				Terrasoft.ServerChannel.on(Terrasoft.EventName.ON_MESSAGE,
+					this.onProcessMessage, this);
+			},
+
+			/*
+				Функция для отписки от сообщений
+			*/
+			onDestroy: function () {
+				Terrasoft.ServerChannel.un(Terrasoft.EventName.ON_MESSAGE, this.onProcessMessage, this);
+				this.callParent(arguments);
+			},
+
+			/*
+				Функция обработки сообщений
+			*/
+			onProcessMessage: function (scope, message) {
+				if (!message || message.Header.Sender !== "ReloadSessionDetail") {
+					return;
+				}
+				else {
+					this.reloadDomSessionDetail();
+				}
+			},
+
+			/*
+				Функция для обновления детали DomSessionDetail
+			*/
+			reloadDomSessionDetail: function () {
+				this.updateDetail({ detail: "DomSessionDetail", reloadAll: true });
+			},
+
+			/*
+				Функция, добавляющая действие DomAddSessionsByPeriod в действия страницы
+			*/
+			getActions: function () {
+				let actionMenuItems = this.callParent(arguments);
+				actionMenuItems.addItem(this.getButtonMenuSeparator());
+				actionMenuItems.addItem(this.getButtonMenuItem({
+					"Tag": "onDomAddSessionsByPeriodClick",
+					"Caption": { "bindTo": "Resources.Strings.DomAddSessionsByPeriodActionCaption" }
+				}));
+
+				return actionMenuItems;
+			},
+
+			/*
+				Функция, реализующая действие DomAddSessionsByPeriod.
+				По нажатию запускается процесс DomAddSessionsByPeriodProcess, 
+				в который передается Id текущей записи.
+			*/
+			onDomAddSessionsByPeriodClick: function () {
+				let currentRecordId = this.get("Id");
+				let args = {
+					sysProcessName: "DomAddSessionsByPeriodProcess",
+                    parameters: {
+						AdvertisingBlockId: currentRecordId
+					}
+				}
+
+				ProcessModuleUtilities.executeProcess(args);
+			}
+		},
 		dataModels: /**SCHEMA_DATA_MODELS*/{}/**SCHEMA_DATA_MODELS*/,
 		diff: /**SCHEMA_DIFF*/[
 			{
