@@ -1,0 +1,104 @@
+= MetaData.Schema.UId "f51cff5b-7263-1eb5-7d9a-eab86775be29"
+= MetaData.Schema.A2 "DomSession"
+= MetaData.Schema.A5 "6e7f30d3-80c1-46a9-a9f7-8104748fb915"
+= MetaData.Schema.B6 "2187001b-4ffd-6cde-0e74-16ac47e3eded"
+= MetaData.Schema.B8 "7.17.1.1363"
+= MetaData.Schema.EG1.UId "e9f16f01-c917-4d25-9485-15791f100172"
+= MetaData.Schema.EG1.A2 "DomEntity_6010fb9EventsProcess"
+= MetaData.Schema.EG1.A5 "6e7f30d3-80c1-46a9-a9f7-8104748fb915"
+- MetaData.Schema.EG1.B1.["fe742d1c-4346-4cc5-894e-217df991856c"].C2
++ MetaData.Schema.EG1.B8 "7.17.1.1363"
+= MetaData.Schema.EG1.BK8 "66f58f21-6ed1-4e29-b506-6b9f6426d463"
+= MetaData.Schema.EG1.BK37.A3 "bb4d6607-026b-4b27-b640-8f5c77c1e89d"
+= MetaData.Schema.EG1.BK37.A4 "bb4d6607-026b-4b27-b640-8f5c77c1e89d"
++ MetaData.Schema.EG1.BK3.["079c1a2b-96d1-4935-9764-180b73ed11ac"].BM4.["6a2146bb-1688-4388-9946-29409f61d0fb"].IL2 "079c1a2b-96d1-4935-9764-180b73ed11ac"
+- MetaData.Schema.EG1.BK3.["079c1a2b-96d1-4935-9764-180b73ed11ac"].BM4.["6a2146bb-1688-4388-9946-29409f61d0fb"].BL4
+- MetaData.Schema.EG1.BK3.["079c1a2b-96d1-4935-9764-180b73ed11ac"].BM4.["6a2146bb-1688-4388-9946-29409f61d0fb"].BL9
+- MetaData.Schema.EG1.BK3.["079c1a2b-96d1-4935-9764-180b73ed11ac"].BL9
+= MetaData.Schema.EG1.BK4.["08594d74-60b0-45ce-bf17-bac1a8b127f7"].CK2.["496d4a3c-b644-4a65-b0ed-2534d9236da5"].BL7 "53818048-7868-48f6-ada0-0ebaa65af628"
+= MetaData.Schema.EG1.BK4.["90027ac8-c9c3-4d21-a4f9-da1cde752cd1"].CK2.["d8b8410f-5c8a-4ddc-8fc2-353483452aed"].BL7 "53818048-7868-48f6-ada0-0ebaa65af628"
+= MetaData.Schema.EG1.BK4.["5f3bfbbe-1820-44ca-92f1-6f993169b2dd"].CK2.["d7c806b7-a29b-4ce5-9167-b3319472e772"].BL7 "53818048-7868-48f6-ada0-0ebaa65af628"
+= MetaData.Schema.EG1.BK4.["dbf48103-dcf6-4f53-a052-d727a95ea0b4"].CK2.["933bf2fc-d052-40c8-a3e0-bf60049da5d8"].BL7 "53818048-7868-48f6-ada0-0ebaa65af628"
+= MetaData.Schema.EG1.BK4.["f0646c74-f291-474f-9a10-143ee868f1c9"].CK2.["b3d5b61f-7afe-48b5-a8cc-40317ea9c428"].BL7 "53818048-7868-48f6-ada0-0ebaa65af628"
+= MetaData.Schema.EG1.BK4.["8140d7e7-fb91-4999-8347-543345440efb"].CK2.["c803a450-c8dc-47a4-b704-7125c23db317"].BL7 "53818048-7868-48f6-ada0-0ebaa65af628"
+- MetaData.Schema.D2.["ae0e45ca-c495-4fe7-a39d-3ab7278e1617"].E16
+- MetaData.Schema.D2.["e80190a5-03b2-4095-90f7-a193a960adee"].E16
+- MetaData.Schema.D2.["ebf6bb93-8aa6-4a01-900d-c6ea67affe21"].E16
+- MetaData.Schema.D2.["9928edec-4272-425a-93bb-48743fee4b04"].E16
+- MetaData.Schema.D2.["3015559e-cbc6-406a-88af-07f7930be832"].E16
+- MetaData.Schema.D2.["3fabd836-6a53-4d8d-9069-6df88d9dae1e"].E16
++ MetaData.Schema.D2 {
+  "UId": "72539ad5-ca23-5cd2-c876-c7475cf3e3a4",
+  "A2": "DomPrice",
+  "A3": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A4": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A5": "6e7f30d3-80c1-46a9-a9f7-8104748fb915",
+  "S2": "5cc8060d-6d10-4773-89fc-8c12d6f659a6"
+}
++ MetaData.Schema.D2 {
+  "UId": "e7b194dc-cc91-fc4d-62af-5247ad891daf",
+  "A2": "DomDuration",
+  "A3": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A4": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A5": "6e7f30d3-80c1-46a9-a9f7-8104748fb915",
+  "S2": "6b6b74e2-820d-490e-a017-2b73d4ccf2b0"
+}
++ MetaData.Schema.D2 {
+  "UId": "7515b10c-dbb0-498b-637d-0bcea77f0eef",
+  "A2": "DomHost",
+  "A3": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A4": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A5": "6e7f30d3-80c1-46a9-a9f7-8104748fb915",
+  "S2": "b295071f-7ea9-4e62-8d1a-919bf3732ff2",
+  "S4": "16be3651-8fe2-4159-8dd0-a803d4683dd3",
+  "E6": true,
+  "E17": "DomHostId",
+  "E18": "DomHostName"
+}
++ MetaData.Schema.D2 {
+  "UId": "01f4556b-39d1-3b22-7679-f7399234f4f0",
+  "A2": "DomDate",
+  "A3": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A4": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A5": "6e7f30d3-80c1-46a9-a9f7-8104748fb915",
+  "S2": "d21e9ef4-c064-4012-b286-fa1a8171da44"
+}
++ MetaData.Schema.D2 {
+  "UId": "13f28788-5500-0ecd-e631-0000efd06930",
+  "A2": "DomSessionState",
+  "A3": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A4": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A5": "6e7f30d3-80c1-46a9-a9f7-8104748fb915",
+  "S2": "b295071f-7ea9-4e62-8d1a-919bf3732ff2",
+  "S4": "c28e87b4-4aef-8bd4-2959-7dd624a1127c",
+  "E6": true,
+  "E17": "DomSessionStateId",
+  "E18": "DomSessionStateName"
+}
++ MetaData.Schema.D2 {
+  "UId": "a2b7590c-514b-495e-a515-5aba210dbd4d",
+  "A2": "DomAdvertisingBlock",
+  "A3": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A4": "f51cff5b-7263-1eb5-7d9a-eab86775be29",
+  "A5": "6e7f30d3-80c1-46a9-a9f7-8104748fb915",
+  "S2": "b295071f-7ea9-4e62-8d1a-919bf3732ff2",
+  "S4": "b5e41cb2-958d-4d96-8d07-0719ebcf6204",
+  "E6": true,
+  "E17": "DomAdvertisingBlockId",
+  "E18": "DomAdvertisingBlockDomName"
+}
+~ MetaData.Schema.D2 ["ae0e45ca-c495-4fe7-a39d-3ab7278e1617","e80190a5-03b2-4095-90f7-a193a960adee","ebf6bb93-8aa6-4a01-900d-c6ea67affe21","9928edec-4272-425a-93bb-48743fee4b04","3015559e-cbc6-406a-88af-07f7930be832","3fabd836-6a53-4d8d-9069-6df88d9dae1e","72539ad5-ca23-5cd2-c876-c7475cf3e3a4","e7b194dc-cc91-fc4d-62af-5247ad891daf","7515b10c-dbb0-498b-637d-0bcea77f0eef","01f4556b-39d1-3b22-7679-f7399234f4f0","13f28788-5500-0ecd-e631-0000efd06930","a2b7590c-514b-495e-a515-5aba210dbd4d"]
+= MetaData.Schema.D20.A2 "DomSessionEvents"
+- MetaData.Schema.EG1.BK29
+- MetaData.Schema.EG1.BK30
+- MetaData.Schema.D1
+- MetaData.Schema.D20.FA4
+- MetaData.Schema.D20.FA15
+- MetaData.Schema.B7
++ MetaData.Schema.B7 false
++ MetaData.Schema.D2.["ae0e45ca-c495-4fe7-a39d-3ab7278e1617"].E16 false
++ MetaData.Schema.D2.["e80190a5-03b2-4095-90f7-a193a960adee"].E16 false
++ MetaData.Schema.D2.["ebf6bb93-8aa6-4a01-900d-c6ea67affe21"].E16 false
++ MetaData.Schema.D2.["9928edec-4272-425a-93bb-48743fee4b04"].E16 false
++ MetaData.Schema.D2.["3015559e-cbc6-406a-88af-07f7930be832"].E16 false
++ MetaData.Schema.D2.["3fabd836-6a53-4d8d-9069-6df88d9dae1e"].E16 false

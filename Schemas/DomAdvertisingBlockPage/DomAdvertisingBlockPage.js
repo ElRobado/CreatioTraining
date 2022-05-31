@@ -11,6 +11,14 @@ define("DomAdvertisingBlockPage", [], function() {
 					"masterColumn": "Id",
 					"detailColumn": "DomAdvertisingBlock"
 				}
+			},
+			"DomSessionDetail": {
+				"schemaName": "DomSessionDetail",
+				"entitySchemaName": "DomSession",
+				"filter": {
+					"detailColumn": "DomAdvertisingBlock",
+					"masterColumn": "Id"
+				}
 			}
 		}/**SCHEMA_DETAILS*/,
 		businessRules: /**SCHEMA_BUSINESS_RULES*/{
@@ -90,6 +98,25 @@ define("DomAdvertisingBlockPage", [], function() {
 			},
 			{
 				"operation": "insert",
+				"name": "DomPeriodicity",
+				"values": {
+					"layout": {
+						"colSpan": 12,
+						"rowSpan": 1,
+						"column": 0,
+						"row": 2,
+						"layoutName": "Header"
+					},
+					"bindTo": "DomPeriodicity",
+					"enabled": true,
+					"contentType": 3
+				},
+				"parentName": "Header",
+				"propertyName": "items",
+				"index": 3
+			},
+			{
+				"operation": "insert",
 				"name": "DomIsActive",
 				"values": {
 					"layout": {
@@ -103,7 +130,7 @@ define("DomAdvertisingBlockPage", [], function() {
 				},
 				"parentName": "Header",
 				"propertyName": "items",
-				"index": 3
+				"index": 4
 			},
 			{
 				"operation": "insert",
@@ -120,26 +147,32 @@ define("DomAdvertisingBlockPage", [], function() {
 				},
 				"parentName": "Header",
 				"propertyName": "items",
-				"index": 4
+				"index": 5
 			},
 			{
 				"operation": "insert",
-				"name": "DomPeriodicity",
+				"name": "DomSessionTabLabel",
 				"values": {
-					"layout": {
-						"colSpan": 12,
-						"rowSpan": 1,
-						"column": 0,
-						"row": 2,
-						"layoutName": "Header"
+					"caption": {
+						"bindTo": "Resources.Strings.DomSessionTabLabelTabCaption"
 					},
-					"bindTo": "DomPeriodicity",
-					"enabled": true,
-					"contentType": 3
+					"items": [],
+					"order": 0
 				},
-				"parentName": "Header",
+				"parentName": "Tabs",
+				"propertyName": "tabs",
+				"index": 0
+			},
+			{
+				"operation": "insert",
+				"name": "DomSessionDetail",
+				"values": {
+					"itemType": 2,
+					"markerValue": "added-detail"
+				},
+				"parentName": "DomSessionTabLabel",
 				"propertyName": "items",
-				"index": 5
+				"index": 0
 			},
 			{
 				"operation": "insert",
@@ -149,11 +182,11 @@ define("DomAdvertisingBlockPage", [], function() {
 						"bindTo": "Resources.Strings.NotesAndFilesTabCaption"
 					},
 					"items": [],
-					"order": 0
+					"order": 1
 				},
 				"parentName": "Tabs",
 				"propertyName": "tabs",
-				"index": 0
+				"index": 1
 			},
 			{
 				"operation": "insert",
@@ -211,7 +244,7 @@ define("DomAdvertisingBlockPage", [], function() {
 				"operation": "merge",
 				"name": "ESNTab",
 				"values": {
-					"order": 1
+					"order": 2
 				}
 			}
 		]/**SCHEMA_DIFF*/

@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "0b7c252e-6826-48d7-bdcb-b3102f247cd0",
+    "Name": "DomSessionDetail",
+    "ModifiedOnUtc": "\/Date(1654001525000)\/",
+    "Parent": {
+      "UId": "01eb38ee-668a-42f0-999d-c2534f979089",
+      "Name": "BaseGridDetailV2"
+    },
+    "ManagerName": "ClientUnitSchemaManager",
+    "Caption": "Схема детали: \"Выпуски\""
+  }
+}
