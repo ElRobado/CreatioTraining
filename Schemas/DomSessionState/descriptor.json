@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "c28e87b4-4aef-8bd4-2959-7dd624a1127c",
+    "Name": "DomSessionState",
+    "ModifiedOnUtc": "\/Date(1653998309000)\/",
+    "Parent": {
+      "UId": "11ab4bcb-9b23-4b6d-9c86-520fae925d75",
+      "Name": "BaseLookup"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Состояние выпуска"
+  }
+}
