@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "729b8fb9-a15b-4b65-9eee-19c6b79060e7",
+    "Name": "DomAdvertisingBlockFile",
+    "ModifiedOnUtc": "\/Date(1653994197000)\/",
+    "Parent": {
+      "UId": "556c5867-60a7-4456-aae1-a57a122bef70",
+      "Name": "File"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Файл и ссылка объекта Рекламны",
+    "DependsOn": []
+  }
+}

@@ -1,0 +1,14 @@
+﻿{
+  "Descriptor": {
+    "UId": "b5e41cb2-958d-4d96-8d07-0719ebcf6204",
+    "Name": "DomAdvertisingBlock",
+    "ModifiedOnUtc": "\/Date(1653992264000)\/",
+    "Parent": {
+      "UId": "1bab9dcf-17d5-49f8-9536-8e0064f1dce0",
+      "Name": "BaseEntity"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Рекламный блок",
+    "DependsOn": []
+  }
+}
