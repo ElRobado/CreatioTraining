@@ -1,4 +1,4 @@
-define("DomAdvertisingBlockPage", [], function() {
+define("DomAdvertisingBlockPage", ["DomRadioAdvertisingConstantsJs"], function (DomConstantsJs) {
 	return {
 		entitySchemaName: "DomAdvertisingBlock",
 		attributes: {},
@@ -22,10 +22,10 @@ define("DomAdvertisingBlockPage", [], function() {
 			}
 		}/**SCHEMA_DETAILS*/,
 		businessRules: /**SCHEMA_BUSINESS_RULES*/{
-          	/*
-              Бизнес-правило для фильтрации поля Ответственный 
-              для отображения только Контактов с типом "Сотрудник".
-            */
+			/*
+				Бизнес-правило для фильтрации поля Ответственный 
+				для отображения только Контактов с типом "Сотрудник".
+			*/
 			"DomResponsible": {
 				"c7b72954-d6bb-498f-8527-80cded420f9f": {
 					"uId": "c7b72954-d6bb-498f-8527-80cded420f9f",
@@ -42,7 +42,88 @@ define("DomAdvertisingBlockPage", [], function() {
 				}
 			}
 		}/**SCHEMA_BUSINESS_RULES*/,
-		methods: {},
+		methods: {
+			/*
+				Функция, выполняющая валидацию при сохранении
+			*/
+			asyncValidate: function (callback, scope) {
+				this.callParent([function (response) {
+					if (!this.validateResponse(response)) {
+						return;
+					}
+
+					Terrasoft.chain(
+						function (next) {
+							this.validateActiveAdvertisingBlockCount(function (response) {
+								if (this.validateResponse(response)) {
+									Ext.callback(callback, scope, [response]);
+								}
+							}, this);
+						}, this);
+				}, this]);
+			},
+
+			/*
+				Функция, проверяющая, превышает ли количество активных ежечасных рекламных блоков
+				значение системной настройки "Максимальное число активных ежечасных выпусков".
+			*/
+			validateActiveAdvertisingBlockCount: function (callback, scope) {
+				var result = {
+					success: true
+				};
+
+				var periodicity = this.get("DomPeriodicity");
+
+				if ((periodicity?.value === DomConstantsJs.Periodicity.Hourly)) {
+					var limit = Terrasoft.SysSettings.getCachedSysSetting("DomSessionsActiveHourlyMaxLimit");
+
+					var esqActiveHourlyAdvertisingBlock = Ext.create("Terrasoft.EntitySchemaQuery", {
+						rootSchemaName: "DomAdvertisingBlock"
+					});
+					esqActiveHourlyAdvertisingBlock.addColumn("Id");
+
+					esqActiveHourlyAdvertisingBlock.filters.addItem(esqActiveHourlyAdvertisingBlock.createColumnFilterWithParameter(
+						this.Terrasoft.ComparisonType.NOT_EQUAL, "Id", this.get("Id")));
+
+					esqActiveHourlyAdvertisingBlock.filters.addItem(esqActiveHourlyAdvertisingBlock.createColumnFilterWithParameter(
+						this.Terrasoft.ComparisonType.EQUAL, "DomIsActive", true));
+
+					esqActiveHourlyAdvertisingBlock.filters.addItem(esqActiveHourlyAdvertisingBlock.createColumnFilterWithParameter(
+						this.Terrasoft.ComparisonType.EQUAL, "DomPeriodicity.Id", DomConstantsJs.Periodicity.Hourly));
+
+					esqActiveHourlyAdvertisingBlock.getEntityCollection(function (response) {
+						if (response.success) {
+							/*
+								Здесь есть дополнительная проверка в checkCurrentAdvertisingBlock на ту запись, которую пытаются сохранить. 
+								Ее НУЖНО проверять и учитывать отдельно от остальной коллекции.
+							*/
+							if ((response.collection.getCount() >= limit) && (this.checkCurrentAdvertisingBlock())) {
+								result.message = this.Ext.String.format(
+									this.get("Resources.Strings.DomExceedingActiveHourlyAdvertisingBlocksLimitErrorMessage"), limit);
+								result.success = false;
+							}
+							Ext.callback(callback, scope, [result]);
+						} else {
+							Ext.callback(callback, scope, [result]);
+						}
+					}, this);
+				} else {
+					Ext.callback(callback, scope, [result]);
+				}
+			},
+
+			/*
+				Функция, проверяющая, нужно ли учитывать текущую запись в подсчетах превышения лимита.
+			*/
+			checkCurrentAdvertisingBlock: function () {
+				if ((this.$DomIsActive === true) &&
+					(this.$DomPeriodicity.value === DomConstantsJs.Periodicity.Hourly)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		},
 		dataModels: /**SCHEMA_DATA_MODELS*/{}/**SCHEMA_DATA_MODELS*/,
 		diff: /**SCHEMA_DIFF*/[
 			{
