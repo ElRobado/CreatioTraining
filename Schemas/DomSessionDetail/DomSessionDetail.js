@@ -1,5 +1,5 @@
-define("DomSessionDetail", ["ConfigurationGrid", "ConfigurationGridGenerator",
-    "ConfigurationGridUtilities"],
+define("DomSessionDetail", ["ConfigurationGrid", 
+    "ConfigurationGridGenerator", "ConfigurationGridUtilities"],
     function (ConfigurationGrid) {
         return {
             entitySchemaName: "DomSession",
@@ -35,7 +35,7 @@ define("DomSessionDetail", ["ConfigurationGrid", "ConfigurationGridGenerator",
                             "tag": "card",
                             "markerValue": "card",
                             "imageConfig": {
-   								"bindTo": "Resources.Images.CardIcon"
+                                "bindTo": "Resources.Images.CardIcon"
                             }
                         },
                         {
@@ -82,25 +82,28 @@ define("DomSessionDetail", ["ConfigurationGrid", "ConfigurationGridGenerator",
                 ConfigurationGridUtilities: "Terrasoft.ConfigurationGridUtilities"
             },
             methods: {
-              onActiveRowAction: function(buttonTag, primaryColumnValue) {
-                  this.set("LastActiveRow", primaryColumnValue);
-                  switch (buttonTag) {
-                      case "card":
-                          this.editCurrentRecord();
-                          break;
-                      case "remove":
-                          this.deleteRecords();
-                          break;
-                      case "cancel":
-                          this.discardChanges(primaryColumnValue);
-                          break;
-                      case "save":
-                          this.onActiveRowSave(primaryColumnValue);
-                          break;
-                      default:
-                          break;
-                  }
-              }
-           }
+                /*
+                    Функция, отвечающая за действия кнопок на записи детали
+                */
+                onActiveRowAction: function (buttonTag, primaryColumnValue) {
+                    this.set("LastActiveRow", primaryColumnValue);
+                    switch (buttonTag) {
+                        case "card":
+                            this.editCurrentRecord();
+                            break;
+                        case "remove":
+                            this.deleteRecords();
+                            break;
+                        case "cancel":
+                            this.discardChanges(primaryColumnValue);
+                            break;
+                        case "save":
+                            this.onActiveRowSave(primaryColumnValue);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         };
     });

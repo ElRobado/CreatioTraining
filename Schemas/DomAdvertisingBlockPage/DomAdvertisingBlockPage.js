@@ -1,4 +1,5 @@
-define("DomAdvertisingBlockPage", ["DomRadioAdvertisingConstantsJs"], function (DomConstantsJs) {
+define("DomAdvertisingBlockPage", ["DomRadioAdvertisingConstantsJs", "ProcessModuleUtilities"], 
+       function (DomConstantsJs, ProcessModuleUtilities) {
 	return {
 		entitySchemaName: "DomAdvertisingBlock",
 		attributes: {},
@@ -42,7 +43,40 @@ define("DomAdvertisingBlockPage", ["DomRadioAdvertisingConstantsJs"], function (
 				}
 			}
 		}/**SCHEMA_BUSINESS_RULES*/,
-		methods: {
+		methods: {			
+			/*
+				Функция, инициализирующая страницу и запускающая подписку на сообщения
+			*/
+			init: function () {
+				this.callParent(arguments);
+				this.subscriptionFunction();
+			},
+
+			/*
+				Функция, выполняющая подписку на канал сообщений
+			*/			
+			subscriptionFunction: function () {
+				Terrasoft.ServerChannel.on(Terrasoft.EventName.ON_MESSAGE, this.onProcessMessage, this);
+			},
+			
+			/*
+				Функция, выполняющая отписку на канала сообщений
+			*/		
+			onDestroy: function () {
+				Terrasoft.ServerChannel.un(Terrasoft.EventName.ON_MESSAGE, this.onProcessMessage, this);
+				this.callParent(arguments);
+			},
+
+			/*
+				Функция, выполняющая обработку входящих сообщений
+			*/
+			onProcessMessage: function (scope, message) {
+				if (!message || message.Header.Sender !== "ReloadAdvertisingBlockPage") {
+					return;
+				}
+				this.updateDetail({ detail: "DomSessionDetail" });
+			},
+
 			/*
 				Функция, выполняющая валидацию при сохранении
 			*/
@@ -74,7 +108,7 @@ define("DomAdvertisingBlockPage", ["DomRadioAdvertisingConstantsJs"], function (
 
 				var periodicity = this.get("DomPeriodicity");
 
-				if ((periodicity?.value === DomConstantsJs.Periodicity.Hourly)) {
+				if (periodicity?.value === DomConstantsJs.Periodicity.Hourly) {
 					var limit = Terrasoft.SysSettings.getCachedSysSetting("DomSessionsActiveHourlyMaxLimit");
 
 					var esqActiveHourlyAdvertisingBlock = Ext.create("Terrasoft.EntitySchemaQuery", {
@@ -122,7 +156,36 @@ define("DomAdvertisingBlockPage", ["DomRadioAdvertisingConstantsJs"], function (
 				} else {
 					return false;
 				}
-			}
+			},
+
+			/*
+				Функция, добавляющая действие DomStartDomAddSessionsByPeriodProcess в действия страницы
+			*/
+			getActions: function () {
+				var actionMenuItems = this.callParent(arguments);
+				actionMenuItems.addItem(this.getButtonMenuSeparator());
+				actionMenuItems.addItem(this.getButtonMenuItem({
+					"Tag": "onDomStartDomAddSessionsByPeriodProcessClick",
+					"Caption": { "bindTo": "Resources.Strings.DomStartDomAddSessionsByPeriodProcessActionCaption" }
+				}));
+
+				return actionMenuItems;
+			},
+
+			/*
+				Функция, запускающая процесс DomAddSessionsByPeriodProcess, и передающая в него
+				Id текущей записи
+			*/
+			onDomStartDomAddSessionsByPeriodProcessClick: function () {
+				var processConfig = {
+					sysProcessName: "DomAddSessionsByPeriod",
+					parameters: {
+						AdvertisingBlockId: this.get("Id"),
+					}
+				};
+
+				ProcessModuleUtilities.executeProcess(processConfig);
+			},
 		},
 		dataModels: /**SCHEMA_DATA_MODELS*/{}/**SCHEMA_DATA_MODELS*/,
 		diff: /**SCHEMA_DIFF*/[

@@ -4,6 +4,7 @@
 		<Items>
 			<Item Name="Caption" Value="Схема раздела: &quot;Рекламный блок&quot;" />
 			<Item Name="LocalizableStrings.Caption.Value" Value="Рекламный блок" />
+			<Item Name="LocalizableStrings.DomStartDomAddSessionsByPeriodProcessActionCaption.Value" Value="Добавить выпуски с текущим периодом" />
 		</Items>
 	</Group>
 </Resources>

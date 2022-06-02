@@ -6,6 +6,7 @@
 			<Item Name="LocalizableStrings.DomExceedingActiveHourlyAdvertisingBlocksLimitErrorMessage.Value" Value="В системе не может быть больше {0} активных ежечасных рекламных блоков!" />
 			<Item Name="LocalizableStrings.DomSessionDetailDetailCaptionOnPage.Value" Value="Выпуски" />
 			<Item Name="LocalizableStrings.DomSessionTabLabelTabCaption.Value" Value="Выпуски" />
+			<Item Name="LocalizableStrings.DomStartDomAddSessionsByPeriodProcessActionCaption.Value" Value="Добавить выпуски с текущим периодом" />
 		</Items>
 	</Group>
 </Resources>
