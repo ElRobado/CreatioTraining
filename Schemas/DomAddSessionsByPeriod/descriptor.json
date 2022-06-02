@@ -1,8 +1,8 @@
 ﻿{
   "Descriptor": {
     "UId": "eaf93501-ba05-40e6-b7f0-c9c4a3fc98e4",
-    "Name": "DomAddSessionsByPeriodProcess",
-    "ModifiedOnUtc": "\/Date(1654010052000)\/",
+    "Name": "DomAddSessionsByPeriod",
+    "ModifiedOnUtc": "\/Date(1654151356000)\/",
     "ManagerName": "ProcessSchemaManager",
     "Caption": "Создание Выпусков с заданной периодичностью "
   }

@@ -1,4 +1,5 @@
-define("DomAdvertisingBlockPage", ["ProcessModuleUtilities"], function (ProcessModuleUtilities) {
+define("DomAdvertisingBlockPage", ["DomRadioAdvertisingConstantsJs", "ProcessModuleUtilities"], 
+       function (DomConstantsJs, ProcessModuleUtilities) {
 	return {
 		entitySchemaName: "DomAdvertisingBlock",
 		attributes: {},
@@ -23,8 +24,8 @@ define("DomAdvertisingBlockPage", ["ProcessModuleUtilities"], function (ProcessM
 		}/**SCHEMA_DETAILS*/,
 		businessRules: /**SCHEMA_BUSINESS_RULES*/{
 			/*
-			  Бизнес-правило для фильтрации поля Ответственный 
-			  для отображения только Контактов с типом "Сотрудник".
+				Бизнес-правило для фильтрации поля Ответственный 
+				для отображения только Контактов с типом "Сотрудник".
 			*/
 			"DomResponsible": {
 				"c7b72954-d6bb-498f-8527-80cded420f9f": {
@@ -42,79 +43,149 @@ define("DomAdvertisingBlockPage", ["ProcessModuleUtilities"], function (ProcessM
 				}
 			}
 		}/**SCHEMA_BUSINESS_RULES*/,
-		methods: {
+		methods: {			
 			/*
-				Функция, инициализирующая страницу
+				Функция, инициализирующая страницу и запускающая подписку на сообщения
 			*/
 			init: function () {
 				this.callParent(arguments);
 				this.subscriptionFunction();
 			},
-			/*
-				Функция для подписки на сообщения
-			*/
-			subscriptionFunction: function () {
-				Terrasoft.ServerChannel.on(Terrasoft.EventName.ON_MESSAGE,
-					this.onProcessMessage, this);
-			},
 
 			/*
-				Функция для отписки от сообщений
-			*/
+				Функция, выполняющая подписку на канал сообщений
+			*/			
+			subscriptionFunction: function () {
+				Terrasoft.ServerChannel.on(Terrasoft.EventName.ON_MESSAGE, this.onProcessMessage, this);
+			},
+			
+			/*
+				Функция, выполняющая отписку на канала сообщений
+			*/		
 			onDestroy: function () {
 				Terrasoft.ServerChannel.un(Terrasoft.EventName.ON_MESSAGE, this.onProcessMessage, this);
 				this.callParent(arguments);
 			},
 
 			/*
-				Функция обработки сообщений
+				Функция, выполняющая обработку входящих сообщений
 			*/
 			onProcessMessage: function (scope, message) {
-				if (!message || message.Header.Sender !== "ReloadSessionDetail") {
+				if (!message || message.Header.Sender !== "ReloadAdvertisingBlockPage") {
 					return;
 				}
-				else {
-					this.reloadDomSessionDetail();
+				this.updateDetail({ detail: "DomSessionDetail" });
+			},
+
+			/*
+				Функция, выполняющая валидацию при сохранении
+			*/
+			asyncValidate: function (callback, scope) {
+				this.callParent([function (response) {
+					if (!this.validateResponse(response)) {
+						return;
+					}
+
+					Terrasoft.chain(
+						function (next) {
+							this.validateActiveAdvertisingBlockCount(function (response) {
+								if (this.validateResponse(response)) {
+									Ext.callback(callback, scope, [response]);
+								}
+							}, this);
+						}, this);
+				}, this]);
+			},
+
+			/*
+				Функция, проверяющая, превышает ли количество активных ежечасных рекламных блоков
+				значение системной настройки "Максимальное число активных ежечасных выпусков".
+			*/
+			validateActiveAdvertisingBlockCount: function (callback, scope) {
+				var result = {
+					success: true
+				};
+
+				var periodicity = this.get("DomPeriodicity");
+
+				if (periodicity?.value === DomConstantsJs.Periodicity.Hourly) {
+					var limit = Terrasoft.SysSettings.getCachedSysSetting("DomSessionsActiveHourlyMaxLimit");
+
+					var esqActiveHourlyAdvertisingBlock = Ext.create("Terrasoft.EntitySchemaQuery", {
+						rootSchemaName: "DomAdvertisingBlock"
+					});
+					esqActiveHourlyAdvertisingBlock.addColumn("Id");
+
+					esqActiveHourlyAdvertisingBlock.filters.addItem(esqActiveHourlyAdvertisingBlock.createColumnFilterWithParameter(
+						this.Terrasoft.ComparisonType.NOT_EQUAL, "Id", this.get("Id")));
+
+					esqActiveHourlyAdvertisingBlock.filters.addItem(esqActiveHourlyAdvertisingBlock.createColumnFilterWithParameter(
+						this.Terrasoft.ComparisonType.EQUAL, "DomIsActive", true));
+
+					esqActiveHourlyAdvertisingBlock.filters.addItem(esqActiveHourlyAdvertisingBlock.createColumnFilterWithParameter(
+						this.Terrasoft.ComparisonType.EQUAL, "DomPeriodicity.Id", DomConstantsJs.Periodicity.Hourly));
+
+					esqActiveHourlyAdvertisingBlock.getEntityCollection(function (response) {
+						if (response.success) {
+							/*
+								Здесь есть дополнительная проверка в checkCurrentAdvertisingBlock на ту запись, которую пытаются сохранить. 
+								Ее НУЖНО проверять и учитывать отдельно от остальной коллекции.
+							*/
+							if ((response.collection.getCount() >= limit) && (this.checkCurrentAdvertisingBlock())) {
+								result.message = this.Ext.String.format(
+									this.get("Resources.Strings.DomExceedingActiveHourlyAdvertisingBlocksLimitErrorMessage"), limit);
+								result.success = false;
+							}
+							Ext.callback(callback, scope, [result]);
+						} else {
+							Ext.callback(callback, scope, [result]);
+						}
+					}, this);
+				} else {
+					Ext.callback(callback, scope, [result]);
 				}
 			},
 
 			/*
-				Функция для обновления детали DomSessionDetail
+				Функция, проверяющая, нужно ли учитывать текущую запись в подсчетах превышения лимита.
 			*/
-			reloadDomSessionDetail: function () {
-				this.updateDetail({ detail: "DomSessionDetail", reloadAll: true });
+			checkCurrentAdvertisingBlock: function () {
+				if ((this.$DomIsActive === true) &&
+					(this.$DomPeriodicity.value === DomConstantsJs.Periodicity.Hourly)) {
+					return true;
+				} else {
+					return false;
+				}
 			},
 
 			/*
-				Функция, добавляющая действие DomAddSessionsByPeriod в действия страницы
+				Функция, добавляющая действие DomStartDomAddSessionsByPeriodProcess в действия страницы
 			*/
 			getActions: function () {
-				let actionMenuItems = this.callParent(arguments);
+				var actionMenuItems = this.callParent(arguments);
 				actionMenuItems.addItem(this.getButtonMenuSeparator());
 				actionMenuItems.addItem(this.getButtonMenuItem({
-					"Tag": "onDomAddSessionsByPeriodClick",
-					"Caption": { "bindTo": "Resources.Strings.DomAddSessionsByPeriodActionCaption" }
+					"Tag": "onDomStartDomAddSessionsByPeriodProcessClick",
+					"Caption": { "bindTo": "Resources.Strings.DomStartDomAddSessionsByPeriodProcessActionCaption" }
 				}));
 
 				return actionMenuItems;
 			},
 
 			/*
-				Функция, реализующая действие DomAddSessionsByPeriod.
-				По нажатию запускается процесс DomAddSessionsByPeriodProcess, 
-				в который передается Id текущей записи.
+				Функция, запускающая процесс DomAddSessionsByPeriodProcess, и передающая в него
+				Id текущей записи
 			*/
-			onDomAddSessionsByPeriodClick: function () {
-				let currentRecordId = this.get("Id");
-				let args = {
-					sysProcessName: "DomAddSessionsByPeriodProcess",
-                    parameters: {
-						AdvertisingBlockId: currentRecordId
+			onDomStartDomAddSessionsByPeriodProcessClick: function () {
+				var processConfig = {
+					sysProcessName: "DomAddSessionsByPeriod",
+					parameters: {
+						AdvertisingBlockId: this.get("Id"),
 					}
-				}
+				};
 
-				ProcessModuleUtilities.executeProcess(args);
-			}
+				ProcessModuleUtilities.executeProcess(processConfig);
+			},
 		},
 		dataModels: /**SCHEMA_DATA_MODELS*/{}/**SCHEMA_DATA_MODELS*/,
 		diff: /**SCHEMA_DIFF*/[
