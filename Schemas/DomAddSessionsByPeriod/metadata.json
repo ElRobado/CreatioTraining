@@ -737,7 +737,7 @@
           "BO3": true,
           "BP2": [],
           "CL2": "FFFFFFFF",
-          "CH1": "var message = JsonConvert.SerializeObject(new { header = \"ReloadAdvertisingBlockPage\", message = new {Body = \"rrr\"}});\nMsgChannelUtilities.PostMessageToAll(\"ReloadAdvertisingBlockPage\", message);\nreturn true;",
+          "CH1": "var message = JsonConvert.SerializeObject(new { header = \"ReloadAdvertisingBlockPage\", message = new {Body = \"Reload\"}});\nMsgChannelUtilities.PostMessageToAll(\"ReloadAdvertisingBlockPage\", message);\nreturn true;",
           "CH2": true
         },
         {
