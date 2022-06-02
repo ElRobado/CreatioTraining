@@ -737,7 +737,7 @@
           "BO3": true,
           "BP2": [],
           "CL2": "FFFFFFFF",
-          "CH1": "MsgChannelUtilities.PostMessageToAll(\"ReloadAdvertisingBlockPage\", \"ReloadAdvertisingBlockPage\");\nreturn true;",
+          "CH1": "var message = JsonConvert.SerializeObject(new { header = \"ReloadAdvertisingBlockPage\", message = new {Body = \"rrr\"}});\nMsgChannelUtilities.PostMessageToAll(\"ReloadAdvertisingBlockPage\", message);\nreturn true;",
           "CH2": true
         },
         {
@@ -755,7 +755,7 @@
           "BO3": true,
           "BP2": [],
           "CL2": "FFFFFFFF",
-          "CH1": "var date = DateTime.Now;\nvar recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\n\nfor (int i=0; i<recordsToCreateNumber; i++) \n{\n\tif (i != 0) \n\t{\n\t\tdate = date.AddHours(1);\n\t\tAddSessionRecord(date);\n\t}\n}\n\nreturn true;",
+          "CH1": "var date = DateTime.Now;\nvar recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\n\nfor (int i=0; i<recordsToCreateNumber; i++) \n{\n\tif (i != 0) \n\t{\n\t\tdate = date.AddHours(1);\n\t}\n\tAddSessionRecord(date);\n}\n\nreturn true;",
           "CH2": true
         },
         {
@@ -773,7 +773,7 @@
           "BO3": true,
           "BP2": [],
           "CL2": "FFFFFFFF",
-          "CH1": "var date = DateTime.Now;\nvar recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\n\nfor (int i=0; i<recordsToCreateNumber; i++) \n{\n\tif (i != 0) \n\t{\n\t\tdate = date.AddDays(7);\n\t\tAddSessionRecord(date);\n\t}\n}\n\nreturn true;",
+          "CH1": "var date = DateTime.Now;\nvar recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\n\nfor (int i=0; i<recordsToCreateNumber; i++) \n{\n\tif (i != 0) \n\t{\n\t\tdate = date.AddDays(7);\n\t}\n\tAddSessionRecord(date);\n}\n\nreturn true;",
           "CH2": true
         },
         {
@@ -791,7 +791,7 @@
           "BO3": true,
           "BP2": [],
           "CL2": "FFFFFFFF",
-          "CH1": "var date = DateTime.Now;\nvar recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\n\nfor (int i=0; i<recordsToCreateNumber; i++) \n{\n\tif (i != 0) \n\t{\n\t\tdate = date.AddDays(1);\n\t\tAddSessionRecord(date);\n\t}\n}\nreturn true;",
+          "CH1": "var date = DateTime.Now;\nvar recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\n\nfor (int i=0; i<recordsToCreateNumber; i++) \n{\n\tif (i != 0) \n\t{\n\t\tdate = date.AddDays(1);\n\t}\n\tAddSessionRecord(date);\n}\nreturn true;",
           "CH2": true
         },
         {
