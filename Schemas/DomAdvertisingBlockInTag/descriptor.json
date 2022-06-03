@@ -2,13 +2,12 @@
   "Descriptor": {
     "UId": "cfce701f-0cdf-42be-b7a7-1be5dbb6e127",
     "Name": "DomAdvertisingBlockInTag",
-    "ModifiedOnUtc": "\/Date(1653994163000)\/",
+    "ModifiedOnUtc": "\/Date(1654266372000)\/",
     "Parent": {
       "UId": "5894a2b0-51d5-419a-82bb-238674634270",
       "Name": "BaseEntityInTag"
     },
     "ManagerName": "EntitySchemaManager",
-    "Caption": "Тег в записи раздела Рекламны",
-    "DependsOn": []
+    "Caption": "Тег в записи раздела Рекламный блок"
   }
 }
