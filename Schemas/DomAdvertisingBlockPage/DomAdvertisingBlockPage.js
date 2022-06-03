@@ -71,7 +71,7 @@ define("DomAdvertisingBlockPage", ["DomRadioAdvertisingConstantsJs", "ProcessMod
 				Функция, выполняющая обработку входящих сообщений
 			*/
 			onProcessMessage: function (scope, message) {
-				if (!message || message.Header.Sender !== "ReloadAdvertisingBlockPage") {
+				if (!message || message.Header.Sender !== "ReloadDomSessionDetail") {
 					return;
 				}
 				this.updateDetail({ detail: "DomSessionDetail" });

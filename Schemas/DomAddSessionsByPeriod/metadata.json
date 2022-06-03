@@ -737,7 +737,7 @@
           "BO3": true,
           "BP2": [],
           "CL2": "FFFFFFFF",
-          "CH1": "var message = JsonConvert.SerializeObject(new { header = \"ReloadAdvertisingBlockPage\", message = new {Body = \"Reload\"}});\nMsgChannelUtilities.PostMessageToAll(\"ReloadAdvertisingBlockPage\", message);\nreturn true;",
+          "CH1": "var message = JsonConvert.SerializeObject(new { header = \"ReloadDomSessionDetail\", message = new {Body = \"ReloadDomSessionDetail\"}});\nMsgChannelUtilities.PostMessageToAll(\"ReloadDomSessionDetail\", message);\nreturn true;",
           "CH2": true
         },
         {
@@ -755,7 +755,7 @@
           "BO3": true,
           "BP2": [],
           "CL2": "FFFFFFFF",
-          "CH1": "var date = DateTime.Now;\nvar recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\n\nfor (int i=0; i<recordsToCreateNumber; i++) \n{\n\tif (i != 0) \n\t{\n\t\tdate = date.AddHours(1);\n\t}\n\tAddSessionRecord(date);\n}\n\nreturn true;",
+          "CH1": "var recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\nAddSessionRecordsWithPeriod(\"Hourly\", 1, recordsToCreateNumber);\n\nreturn true;",
           "CH2": true
         },
         {
@@ -773,7 +773,7 @@
           "BO3": true,
           "BP2": [],
           "CL2": "FFFFFFFF",
-          "CH1": "var date = DateTime.Now;\nvar recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\n\nfor (int i=0; i<recordsToCreateNumber; i++) \n{\n\tif (i != 0) \n\t{\n\t\tdate = date.AddDays(7);\n\t}\n\tAddSessionRecord(date);\n}\n\nreturn true;",
+          "CH1": "var recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\nAddSessionRecordsWithPeriod(\"Daily\", 7, recordsToCreateNumber);\nreturn true;",
           "CH2": true
         },
         {
@@ -791,7 +791,7 @@
           "BO3": true,
           "BP2": [],
           "CL2": "FFFFFFFF",
-          "CH1": "var date = DateTime.Now;\nvar recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\n\nfor (int i=0; i<recordsToCreateNumber; i++) \n{\n\tif (i != 0) \n\t{\n\t\tdate = date.AddDays(1);\n\t}\n\tAddSessionRecord(date);\n}\nreturn true;",
+          "CH1": "var recordsToCreateNumber = Get<int>(\"RecordsToCreateNumber\");\nAddSessionRecordsWithPeriod(\"Daily\", 1, recordsToCreateNumber);\n\nreturn true;",
           "CH2": true
         },
         {
@@ -1007,7 +1007,7 @@
       "BK18": "Business Process",
       "BK29": true,
       "BK30": true,
-      "BK32": "public void AddSessionRecord(DateTime date) \n{\n\tEntitySchema schema = UserConnection.EntitySchemaManager.GetInstanceByName(\"DomSession\");\n\tEntity entity = schema.CreateEntity(UserConnection);\n\tentity.SetDefColumnValues();\n\tentity.SetColumnValue(\"DomPrice\", 200);\n\tentity.SetColumnValue(\"DomAdvertisingBlockId\", Get<Guid>(\"AdvertisingBlockId\"));\n\tentity.SetColumnValue(\"DomDuration\", 60);\t\n\tentity.SetColumnValue(\"DomDate\", date);\n\tentity.Save(false);\n}",
+      "BK32": "/*\n\tМетод, создающий заданное количество выпусков с определенной периодичностью.\n\tperiodicity - тип периода, определяет, какая часть даты будет увеличиваться.\n\tinterval - интервал, отвечает за частоту создания записей.\n\trecordsToCreateNumber - количество создаваемых записей.\n*/\npublic void AddSessionRecordsWithPeriod(string periodicity, int interval, int recordsToCreateNumber) \n{\n\tvar date = DateTime.Now;\n\t\n\tfor (int i=0; i<recordsToCreateNumber; i++) \n\t{\n\t\tif (i != 0) \n\t\t{\n\t\t\tif (periodicity == \"Hourly\")\n\t\t\t{\n\t\t\t\tdate = date.AddHours(interval);\n\t\t\t}\n\t\t\telse if (periodicity == \"Daily\")\n\t\t\t{\n\t\t\t\tdate = date.AddDays(interval);\n\t\t\t}\n\t\t}\n\t\tCreateSessionRecord(date);\n\t}\n}\n\n/*\n\tМетод, создающий запись Выпуска с указанной датой.\n*/\nprivate void CreateSessionRecord(DateTime date) \n{\n\tEntitySchema schema = UserConnection.EntitySchemaManager.GetInstanceByName(\"DomSession\");\n\tEntity entity = schema.CreateEntity(UserConnection);\n\tentity.SetDefColumnValues();\n\tentity.SetColumnValue(\"DomPrice\", 200);\n\tentity.SetColumnValue(\"DomAdvertisingBlockId\", Get<Guid>(\"AdvertisingBlockId\"));\n\tentity.SetColumnValue(\"DomDuration\", 60);\t\n\tentity.SetColumnValue(\"DomDate\", date);\n\tentity.Save(false);\n}",
       "BK34": "null",
       "Labels": [
         {
