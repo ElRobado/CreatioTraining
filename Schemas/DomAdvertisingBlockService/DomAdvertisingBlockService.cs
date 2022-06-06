@@ -28,55 +28,43 @@ namespace Terrasoft.Configuration.DomAdvertisingBlockService
 		/// Если существует, то запускает функцию подсчета суммы для связанных Выпусков и возвращает итог.
 		/// Если не существует, то возвращает '-1'.
 		/// </summary>
-		/// <param name="DomAdvertisingBlockCode">Код "Рекламного блока", для которого вычисляется сумма.</param>
+		/// <param name="domAdvertisingBlockCode">Код "Рекламного блока", для которого вычисляется сумма.</param>
 		/// <returns></returns>
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, 
             BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
-        public string GetSumForSessionsByAdBlockCode(string DomAdvertisingBlockCode) 
+        public string GetSumForSessionsByAdBlockCode(string domAdvertisingBlockCode) 
         {        
-        	if (CheckIfAdvertisingBlockExists(DomAdvertisingBlockCode) == true) 
-            {
-            	return CalculateSumForSessionsByAdBlockCode(DomAdvertisingBlockCode).ToString();
-            }
-            else 
-            {
-            	return "-1";
-            }
+        	return (CheckIfAdvertisingBlockExists(domAdvertisingBlockCode) 
+            	? CalculateSumForSessionsByAdBlockCode(domAdvertisingBlockCode).ToString() 
+            	: "-1");
         }
-        
+
         /// <summary>
-		/// Метод, проверяющий, существует ли рекламный блок с Кодом DomAdvertisingBlockCode.
-		/// </summary>
-		/// <param name="DomAdvertisingBlockCode">Код "Рекламного блока", для которого производится проверка.</param>
-		/// <returns>true - Рекламный блок существует, false - не существует.</returns>              
-        private bool CheckIfAdvertisingBlockExists(string DomAdvertisingBlockCode) 
+        /// Метод, проверяющий, существует ли рекламный блок с Кодом DomAdvertisingBlockCode.
+        /// </summary>
+        /// <param name="domAdvertisingBlockCode">Код "Рекламного блока", для которого производится проверка.</param>
+        /// <returns>true - Рекламный блок существует, false - не существует.</returns>              
+        private bool CheckIfAdvertisingBlockExists(string domAdvertisingBlockCode) 
         {
         	var esqFindAdvertisingBlockIfExists = new EntitySchemaQuery(UserConnection.EntitySchemaManager, "DomAdvertisingBlock");
             esqFindAdvertisingBlockIfExists.AddColumn("Id");
             var esqDomCodeFilter = esqFindAdvertisingBlockIfExists.CreateFilterWithParameters(FilterComparisonType.Equal, 
-            	"DomCode", DomAdvertisingBlockCode);
+            	"DomCode", domAdvertisingBlockCode);
             esqFindAdvertisingBlockIfExists.Filters.Add(esqDomCodeFilter);
             
             var collection = esqFindAdvertisingBlockIfExists.GetEntityCollection(UserConnection);
             
-            if (collection.Count > 0) 
-            {
-            	return true;
-            }
-            else 
-            {
-            	return false;
-            }
+            return (collection.Count > 0);
         }
-        
+
         /// <summary>
-		/// Метод, вычисляющий сумму стоимости для всех завершенных выпусков, связанных с Рекламным блоком,
+        /// Метод, вычисляющий сумму стоимости для всех завершенных выпусков, связанных с Рекламным блоком,
         /// которому соответствует входящий Код DomAdvertisingBlockCode.
-		/// </summary>
-		/// <param name="DomAdvertisingBlockCode">Код "Рекламного блока", для которого вычисляется сумма.</param>
-		/// <returns>Сумма стоимости для всех завершенных Выпусков.</returns>        
-        private double CalculateSumForSessionsByAdBlockCode(string DomAdvertisingBlockCode) 
+        /// </summary>
+        /// <param name="domAdvertisingBlockCode">Код "Рекламного блока", для которого вычисляется сумма.</param>
+        /// <returns>Сумма стоимости для всех завершенных Выпусков.</returns>        
+        private double CalculateSumForSessionsByAdBlockCode(string domAdvertisingBlockCode) 
         {
             var esqSumForSessionPricesByAdBlockCode = new EntitySchemaQuery(UserConnection.EntitySchemaManager, "DomSession");
             
@@ -84,18 +72,18 @@ namespace Terrasoft.Configuration.DomAdvertisingBlockService
             totalSumColumn.SummaryType = AggregationType.Sum;
 
             var esqDomCodeFilter = esqSumForSessionPricesByAdBlockCode.CreateFilterWithParameters(FilterComparisonType.Equal, 
-            	"DomAdvertisingBlock.DomCode", DomAdvertisingBlockCode);
+            	"DomAdvertisingBlock.DomCode", domAdvertisingBlockCode);
             esqSumForSessionPricesByAdBlockCode.Filters.Add(esqDomCodeFilter);
             
             var esqDomSessionStateFilter = esqSumForSessionPricesByAdBlockCode.CreateFilterWithParameters(FilterComparisonType.Equal, 
-            	"DomSessionState", DomConstantsCs.SessionState.Completed);
+            	"DomSessionState", DomConstants.SessionState.Completed);
             esqSumForSessionPricesByAdBlockCode.Filters.Add(esqDomSessionStateFilter);
             
             double totalSum = 0.0;
             var summaryEntity = esqSumForSessionPricesByAdBlockCode.GetSummaryEntity(UserConnection);            
             if (summaryEntity != null)
             {
-            	totalSum = Convert.ToDouble(summaryEntity.GetColumnValue(totalSumColumn.Name));             
+            	totalSum = summaryEntity.GetTypedColumnValue<double>(totalSumColumn.Name);             
             }            
             
             return totalSum;       
