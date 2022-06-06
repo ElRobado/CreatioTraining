@@ -2,27 +2,13 @@
   "Descriptor": {
     "UId": "3c704766-9eab-4f29-0a77-e103db0e4d04",
     "Name": "SysModuleInWorkplace_Sales",
-    "ModifiedOnUtc": "\/Date(1653993732000)\/",
-    "InstallType": 2,
+    "ModifiedOnUtc": "\/Date(1654498019000)\/",
+    "InstallType": 0,
     "Schema": {
       "UId": "a8b20179-02be-4a13-8908-9fc51cb9f66d",
       "Name": "SysModuleInWorkplace"
     },
     "Columns": [
-      {
-        "ColumnUId": "0e3d3857-2203-40e4-b1ec-8e972007650e",
-        "IsForceUpdate": true,
-        "IsKey": false,
-        "ColumnName": "SysWorkplace",
-        "DataTypeValueUId": "b295071f-7ea9-4e62-8d1a-919bf3732ff2"
-      },
-      {
-        "ColumnUId": "991cf5ef-ffb8-49a5-add3-074a595f6c43",
-        "IsForceUpdate": true,
-        "IsKey": false,
-        "ColumnName": "SysModule",
-        "DataTypeValueUId": "b295071f-7ea9-4e62-8d1a-919bf3732ff2"
-      },
       {
         "ColumnUId": "ae0e45ca-c495-4fe7-a39d-3ab7278e1617",
         "IsForceUpdate": false,
@@ -36,6 +22,20 @@
         "IsKey": false,
         "ColumnName": "Position",
         "DataTypeValueUId": "6b6b74e2-820d-490e-a017-2b73d4ccf2b0"
+      },
+      {
+        "ColumnUId": "0e3d3857-2203-40e4-b1ec-8e972007650e",
+        "IsForceUpdate": true,
+        "IsKey": false,
+        "ColumnName": "SysWorkplace",
+        "DataTypeValueUId": "b295071f-7ea9-4e62-8d1a-919bf3732ff2"
+      },
+      {
+        "ColumnUId": "991cf5ef-ffb8-49a5-add3-074a595f6c43",
+        "IsForceUpdate": true,
+        "IsKey": false,
+        "ColumnName": "SysModule",
+        "DataTypeValueUId": "b295071f-7ea9-4e62-8d1a-919bf3732ff2"
       }
     ]
   }
